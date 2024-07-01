@@ -3,6 +3,7 @@ import 'package:adair_9ids2/Models/ServiciosResponse.dart';
 import 'package:adair_9ids2/Pages/Etapas.dart';
 import 'package:adair_9ids2/Pages/Etapa.dart';
 import 'package:adair_9ids2/Pages/Auto.dart';
+import 'package:adair_9ids2/Pages/Citas.dart';
 import 'package:adair_9ids2/Utis/Ambiente.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -196,6 +197,15 @@ class _ServicioState extends State<Servicio> {
                 onPressed: () async {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => Auto(idAuto: 0)),);
                   }, child: Text('Agregr Auto'),
+              ),
+            ),
+            Visibility(
+              visible: widget.idServicio != 0,
+              child:
+              TextButton(
+                onPressed: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Citas()),);
+                }, child: Text('Agregr Cita'),
               ),
             )
           ],

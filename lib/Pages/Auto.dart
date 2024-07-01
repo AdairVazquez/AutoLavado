@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:adair_9ids2/Utis/Ambiente.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:adair_9ids2/Pages/ListaAutos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Auto extends StatefulWidget {
   final int idAuto;
@@ -17,6 +18,7 @@ class Auto extends StatefulWidget {
 
 class _AutoState extends State<Auto> {
   final _formKey = GlobalKey<FormState>();
+
 
   TextEditingController txtMatricula = TextEditingController();
   TextEditingController txtColor = TextEditingController();
@@ -111,7 +113,10 @@ class _AutoState extends State<Auto> {
               /////////////////BOTON DE ACTUALIZAR//////////////////////
               TextButton(
                 onPressed: () async {
+
                   if (_formKey.currentState!.validate()) {
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+                    String? token = prefs.getString('authToken');
                     //try {   //Este Try es para cachar el error
                     final response = await http.post(
                       //Uri.parse('${Ambiente.urlServer}/api/servicio/guardar'),
@@ -125,7 +130,8 @@ class _AutoState extends State<Auto> {
                       }),
                       headers: <String, String>{
                         'Content-Type': 'application/json; charset=UTF-8',
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'Authorization': 'Bearer $token'
                       },
                     );
 

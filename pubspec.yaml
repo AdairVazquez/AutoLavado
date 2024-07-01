@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   http:
   quickalert: ^1.1.0
+  omni_datetime_picker: ^2.0.2
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
