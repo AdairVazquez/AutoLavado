@@ -35,6 +35,7 @@ class _LoginState extends State<Login> {
       final loginResponse = Loginresponse.fromJson(responseJson);
 
       if (loginResponse.acceso == 'Ok') {
+        print(loginResponse.token);
         final token = responseJson['token'];
         // Guarda el token en SharedPreferences
         SharedPreferences prefs = await SharedPreferences.getInstance();
